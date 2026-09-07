@@ -47,7 +47,7 @@ function copyDirRecursive(src, dst) {
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
     const srcPath = path.join(src, entry.name);
     const dstPath = path.join(dst, entry.name);
-    if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === 'tests') continue;
+    if (['.git', 'node_modules', 'tests', 'plugins', '.claude', '.ai'].includes(entry.name)) continue;
     if (entry.isDirectory()) {
       copyDirRecursive(srcPath, dstPath);
     } else {
