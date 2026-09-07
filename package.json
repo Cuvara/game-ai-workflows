@@ -4,7 +4,8 @@
   "description": "Portable AI-agent-agnostic Game Design → Feature → Development → QA workflow framework",
   "type": "module",
   "bin": {
-    "game-ai-workflows": "bin/cli.mjs"
+    "game-ai-workflows": "bin/cli.mjs",
+    "game-ai-workflows-install": "bin/install.cjs"
   },
   "files": [
     "bin/",

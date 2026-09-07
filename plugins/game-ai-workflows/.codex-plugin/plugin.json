@@ -1,0 +1,38 @@
+{
+  "name": "game-ai-workflows",
+  "version": "1.0.0",
+  "description": "Portable Game Design → Feature → Development → QA workflow for AI coding agents",
+  "author": {
+    "name": "Cuvara",
+    "url": "https://github.com/Cuvara"
+  },
+  "homepage": "https://github.com/Cuvara/game-ai-workflows",
+  "repository": "https://github.com/Cuvara/game-ai-workflows",
+  "license": "MIT",
+  "keywords": [
+    "game-design",
+    "gdd",
+    "workflow",
+    "feature-management"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Game AI Workflows",
+    "shortDescription": "Game Design → Feature → Development → QA workflow framework",
+    "longDescription": "Portable, AI-agent-agnostic workflow framework connecting GDD to features, implementation, testing, and verification. Supports Google Drive, local files. Works with Claude Code, Codex, and any MCP-compatible agent.",
+    "developerName": "Cuvara",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Edit"
+    ],
+    "websiteURL": "https://github.com/Cuvara/game-ai-workflows",
+    "privacyPolicyURL": "https://github.com/Cuvara/game-ai-workflows/blob/master/README.md",
+    "termsOfServiceURL": "https://github.com/Cuvara/game-ai-workflows/blob/master/LICENSE",
+    "defaultPrompt": [
+      "Use game-ai-workflows for game design to feature management."
+    ],
+    "brandColor": "#10B981"
+  }
+}
