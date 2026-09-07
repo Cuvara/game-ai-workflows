@@ -11,3 +11,9 @@ document:
 
 sync:
   enabled: true
+
+# Upload generated files back to Google Drive
+upload:
+  enabled: false
+  # folder_id: ""  # Google Drive folder ID to upload features.yaml to
+  # features_file_id: ""  # Existing file ID to update (skip if creating new)

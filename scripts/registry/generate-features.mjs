@@ -276,6 +276,80 @@ class FeatureGenerator {
     }
 
     writeFileSync(this.featuresPath, yaml);
+    return yaml;
+  }
+
+  /**
+   * Load upload config from .ai/config/gdd.yaml
+   */
+  loadUploadConfig() {
+    const configPath = join(this.root, '.ai', 'config', 'gdd.yaml');
+    if (!existsSync(configPath)) return { enabled: false };
+    const content = readFileSync(configPath, 'utf-8');
+
+    const enabled = content.match(/upload:[\s\S]*?enabled:\s*(true|false)/);
+    const folderId = content.match(/folder_id:\s*"?([^"\s#]+)"?/);
+    const fileId = content.match(/features_file_id:\s*"?([^"\s#]+)"?/);
+    const provider = content.match(/^provider:\s*(\S+)/m);
+
+    return {
+      enabled: enabled?.[1] === 'true',
+      folderId: folderId?.[1] || null,
+      featuresFileId: fileId?.[1] || null,
+      provider: provider?.[1] || 'local',
+    };
+  }
+
+  /**
+   * Prepare upload instructions for the AI agent to execute
+   * Returns instructions object that the agent uses to call MCP tools
+   */
+  prepareUpload() {
+    const config = this.loadUploadConfig();
+    if (!config.enabled) {
+      return { shouldUpload: false, reason: 'Upload disabled in .ai/config/gdd.yaml' };
+    }
+
+    if (config.provider !== 'google-drive') {
+      return { shouldUpload: false, reason: `Upload not supported for provider: ${config.provider}` };
+    }
+
+    const featuresContent = existsSync(this.featuresPath)
+      ? readFileSync(this.featuresPath, 'utf-8')
+      : null;
+
+    if (!featuresContent) {
+      return { shouldUpload: false, reason: 'features.yaml does not exist yet' };
+    }
+
+    if (config.featuresFileId) {
+      // Update existing file
+      return {
+        shouldUpload: true,
+        action: 'update',
+        tool: 'mcp__claude_ai_Google_Drive__update_file',
+        params: {
+          fileId: config.featuresFileId,
+          textContent: featuresContent,
+        },
+        message: `Update features.yaml on Google Drive (fileId: ${config.featuresFileId})`,
+      };
+    } else {
+      // Create new file
+      return {
+        shouldUpload: true,
+        action: 'create',
+        tool: 'mcp__claude_ai_Google_Drive__create_file',
+        params: {
+          title: 'features.yaml',
+          textContent: featuresContent,
+          contentMimeType: 'text/yaml',
+          disableConversionToGoogleType: true,
+          ...(config.folderId ? { parentId: config.folderId } : {}),
+        },
+        message: `Create features.yaml on Google Drive${config.folderId ? ` in folder ${config.folderId}` : ''}`,
+      };
+    }
   }
 }
 
@@ -289,6 +363,16 @@ if (process.argv[1]?.endsWith('generate-features.mjs')) {
     console.log('\nNext: review docs/registry/features.yaml and adjust if needed');
   } else {
     console.log('\nNo new features to create.');
+  }
+
+  // Check upload config
+  const upload = gen.prepareUpload();
+  if (upload.shouldUpload) {
+    console.log(`\nGoogle Drive upload ready:`);
+    console.log(`  Action: ${upload.action}`);
+    console.log(`  Tool: ${upload.tool}`);
+    console.log(`  ${upload.message}`);
+    console.log('\nThe AI agent will execute the upload using the MCP tool above.');
   }
 }
 

@@ -74,6 +74,49 @@ export class GoogleDriveProvider extends GDDProvider {
     );
   }
 
+  get canUpload() { return this._mcpAvailable === true; }
+
+  /**
+   * Upload a file to Google Drive
+   * Uses Google Drive MCP create_file or update_file tools.
+   *
+   * When called from an AI agent (Claude Code, Codex), the agent should use
+   * the Google Drive MCP tool directly:
+   *   mcp__claude_ai_Google_Drive__create_file({ title, textContent, parentId })
+   *   mcp__claude_ai_Google_Drive__update_file({ fileId, textContent })
+   *
+   * @param {string} fileName - File name
+   * @param {string} content - File content (text)
+   * @param {object} options - { parentId, fileId (for update), mimeType }
+   * @returns {Promise<{id: string, name: string, url?: string, action: string}>}
+   */
+  async uploadFile(fileName, content, options = {}) {
+    this._ensureReady();
+
+    // This method provides the interface contract.
+    // Actual upload is done by the AI agent using Google Drive MCP tools.
+    // The script returns instructions for the agent to execute.
+    return {
+      provider: 'google-drive',
+      action: options.fileId ? 'update' : 'create',
+      instructions: {
+        tool: options.fileId
+          ? 'mcp__claude_ai_Google_Drive__update_file'
+          : 'mcp__claude_ai_Google_Drive__create_file',
+        params: {
+          title: fileName,
+          textContent: content,
+          ...(options.parentId ? { parentId: options.parentId } : {}),
+          ...(options.fileId ? { fileId: options.fileId } : {}),
+        }
+      },
+      fileName,
+      message: options.fileId
+        ? `Update "${fileName}" on Google Drive (fileId: ${options.fileId})`
+        : `Create "${fileName}" on Google Drive${options.parentId ? ` in folder ${options.parentId}` : ''}`,
+    };
+  }
+
   async _checkMCPAvailability() {
     // Check for Google Drive MCP in environment
     // This is a detection heuristic - checks common MCP config locations

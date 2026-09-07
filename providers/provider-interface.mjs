@@ -67,4 +67,19 @@ export class GDDProvider {
    * @returns {Promise<{changed: boolean, currentRevision: string}>}
    */
   async hasChanges(documentId, sinceRevision) { throw new Error('Not implemented'); }
+
+  /**
+   * Upload/update a file to the provider storage
+   * @param {string} fileName - File name to create/update
+   * @param {string} content - File content
+   * @param {object} options - { parentId, mimeType, description }
+   * @returns {Promise<{id: string, name: string, url?: string}>}
+   */
+  async uploadFile(fileName, content, options = {}) { throw new Error('Not implemented'); }
+
+  /**
+   * Check if provider supports file upload
+   * @returns {boolean}
+   */
+  get canUpload() { return false; }
 }
