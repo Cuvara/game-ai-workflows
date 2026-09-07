@@ -1,2 +1,15 @@
-description = "Show comprehensive feature status"
-prompt = "Resolve feature: node adapters/generic/agent-workflow.mjs find-feature {{args}}. Run: node adapters/generic/agent-workflow.mjs feature-status {{args}}. Check spec, plan, QA report, pending design changes. Format comprehensive report."
+description = "Show feature status"
+prompt = """
+Show comprehensive status of a feature.
+
+Arguments: {{args}} (feature ID or name)
+
+1. Resolve feature: `node adapters/generic/agent-workflow.mjs find-feature {{args}}`
+2. Run: `node adapters/generic/agent-workflow.mjs feature-status {{args}}`
+3. Also check:
+   - Spec exists: `docs/features/<id>/spec.md`
+   - Implementation plan exists: `docs/features/<id>/implementation-plan.md`
+   - Pending design changes: `node scripts/registry/design-change.mjs list PENDING` (grep for feature ID)
+   - QA report: `docs/features/<id>/qa-report.md`
+4. Format as comprehensive status report
+"""

@@ -1,2 +1,12 @@
-description = "Trace all feature relationships"
-prompt = "Run: node scripts/registry/system-lookup.mjs trace-feature {{args}}. Also: node adapters/generic/agent-workflow.mjs feature-impact {{args}}. Report: GDD → Feature → Spec → Systems → Code → Tests → Design Changes. Flag missing links."
+description = "Trace feature relationships"
+prompt = """
+Trace all relationships for a feature.
+
+Arguments: {{args}} (feature ID or name)
+
+1. Resolve feature
+2. Run: `node scripts/registry/system-lookup.mjs trace-feature {{args}}`
+3. Also run: `node adapters/generic/agent-workflow.mjs feature-impact {{args}}`
+4. Report: GDD -> Feature -> Spec -> Systems -> Code -> Tests -> Design Changes
+5. Flag any missing relationships
+"""

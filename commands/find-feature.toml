@@ -1,2 +1,11 @@
-description = "Find feature by ID, name, or fuzzy match"
-prompt = "Run: node adapters/generic/agent-workflow.mjs find-feature {{args}}. If ambiguous show candidates and ask user. Never silently guess."
+description = "Find feature by ID/name/fuzzy match"
+prompt = """
+Find a feature by ID, name, or fuzzy match.
+
+Execute: `node adapters/generic/agent-workflow.mjs find-feature {{args}}`
+
+Arguments: {{args}} (required - feature name, ID, or search term)
+
+If ambiguous, show candidates and ask user to select.
+Never silently guess — always confirm with user if multiple matches.
+"""

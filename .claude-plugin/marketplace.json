@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "game-ai-workflows",
+  "description": "Portable Game Design → Feature → Development → QA workflow framework for AI coding agents.",
+  "owner": {
+    "name": "Cuvara",
+    "url": "https://github.com/Cuvara"
+  },
+  "plugins": [
+    {
+      "name": "game-ai-workflows",
+      "description": "Game Design → Feature → Dev → QA workflow. 14 skills, 15 commands.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

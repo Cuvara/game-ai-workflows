@@ -1,2 +1,10 @@
 description = "List features from registry"
-prompt = "Run: node adapters/generic/agent-workflow.mjs list-features {{args}}. If registry empty suggest /ai-workflow-setup or populating from docs/examples/."
+prompt = """
+List features from the registry.
+
+Execute: `node adapters/generic/agent-workflow.mjs list-features {{args}}`
+
+Arguments: {{args}} (optional status filter: PLANNED, IN_PROGRESS, READY, IMPLEMENTED, TESTING, PLAYTEST, VERIFIED, BLOCKED, etc.)
+
+If registry is empty, suggest running /ai-workflow-setup or populating from docs/examples/.
+"""

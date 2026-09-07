@@ -1,2 +1,20 @@
-description = "Verify and close a feature"
-prompt = "Read skills/close-feature/SKILL.md. Resolve feature {{args}}. Verify: design synced, spec exists, implementation complete, tests passing, playtest complete, acceptance criteria met. If ANY fails report missing — do NOT mark VERIFIED. If all pass update status to VERIFIED. Run: node scripts/validate/validate.mjs."
+description = "Verify and close feature"
+prompt = """
+Verify and close a feature.
+
+Read `skills/close-feature/SKILL.md` for the full procedure.
+
+Arguments: {{args}} (feature ID)
+
+1. Resolve feature
+2. Verify checklist:
+   - [ ] Design synced (GDD current)
+   - [ ] Spec exists
+   - [ ] Implementation complete
+   - [ ] Tests passing
+   - [ ] Playtest complete
+   - [ ] Acceptance criteria met
+3. If any check fails: report what's missing, do NOT mark VERIFIED
+4. If all pass: update feature status to VERIFIED, update changelog
+5. Run validation: `node scripts/validate/validate.mjs`
+"""
