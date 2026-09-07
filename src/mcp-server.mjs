@@ -243,31 +243,66 @@ async function handleToolCall(name, args) {
   }
 }
 
-// Minimal MCP JSON-RPC 2.0 stdio server
+/**
+ * Minimal MCP JSON-RPC 2.0 stdio server with Content-Length framing.
+ * MCP uses HTTP-style header framing: "Content-Length: N\r\n\r\n{json}"
+ */
+
+function sendResponse(response) {
+  const body = JSON.stringify(response);
+  const header = `Content-Length: ${Buffer.byteLength(body)}\r\n\r\n`;
+  process.stdout.write(header + body);
+}
+
 export async function startMCPServer() {
-  const rl = createInterface({ input: process.stdin });
-  let buffer = '';
+  let buffer = Buffer.alloc(0);
+  let contentLength = -1;
 
   process.stderr.write('Game AI Workflows MCP server started\n');
 
-  rl.on('line', async (line) => {
-    try {
-      const msg = JSON.parse(line);
-      const response = await handleMessage(msg);
-      if (response) {
-        process.stdout.write(JSON.stringify(response) + '\n');
+  process.stdin.on('data', async (chunk) => {
+    buffer = Buffer.concat([buffer, chunk]);
+
+    while (true) {
+      if (contentLength === -1) {
+        // Look for header boundary
+        const headerEnd = buffer.indexOf('\r\n\r\n');
+        if (headerEnd === -1) break;
+
+        const header = buffer.subarray(0, headerEnd).toString();
+        const match = header.match(/Content-Length:\s*(\d+)/i);
+        if (!match) {
+          // Invalid header, skip
+          buffer = buffer.subarray(headerEnd + 4);
+          continue;
+        }
+        contentLength = parseInt(match[1], 10);
+        buffer = buffer.subarray(headerEnd + 4);
       }
-    } catch (err) {
-      const errorResponse = {
-        jsonrpc: '2.0',
-        id: null,
-        error: { code: -32700, message: 'Parse error', data: err.message }
-      };
-      process.stdout.write(JSON.stringify(errorResponse) + '\n');
+
+      if (buffer.length < contentLength) break;
+
+      const body = buffer.subarray(0, contentLength).toString();
+      buffer = buffer.subarray(contentLength);
+      contentLength = -1;
+
+      try {
+        const msg = JSON.parse(body);
+        const response = await handleMessage(msg);
+        if (response) {
+          sendResponse(response);
+        }
+      } catch (err) {
+        sendResponse({
+          jsonrpc: '2.0',
+          id: null,
+          error: { code: -32700, message: 'Parse error', data: err.message }
+        });
+      }
     }
   });
 
-  rl.on('close', () => process.exit(0));
+  process.stdin.on('close', () => process.exit(0));
 }
 
 async function handleMessage(msg) {
