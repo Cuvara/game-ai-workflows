@@ -1,0 +1,17 @@
+Verify and close a feature.
+
+Read `skills/close-feature/SKILL.md` for the full procedure.
+
+Arguments: $ARGUMENTS (feature ID)
+
+1. Resolve feature
+2. Verify checklist:
+   - [ ] Design synced (GDD current)
+   - [ ] Spec exists
+   - [ ] Implementation complete
+   - [ ] Tests passing
+   - [ ] Playtest complete
+   - [ ] Acceptance criteria met
+3. If any check fails: report what's missing, do NOT mark VERIFIED
+4. If all pass: update feature status to VERIFIED, update changelog
+5. Run validation: `node scripts/validate/validate.mjs`

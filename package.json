@@ -3,6 +3,22 @@
   "version": "1.0.0",
   "description": "Portable AI-agent-agnostic Game Design → Feature → Development → QA workflow framework",
   "type": "module",
+  "bin": {
+    "game-ai-workflows": "bin/cli.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "scripts/",
+    "providers/",
+    "schemas/",
+    "contracts/",
+    "skills/",
+    "adapters/",
+    "agents/",
+    "docs/",
+    ".claude/"
+  ],
   "scripts": {
     "bootstrap": "node scripts/bootstrap/bootstrap.mjs",
     "validate": "node scripts/validate/validate.mjs",
@@ -10,7 +26,9 @@
     "test:registry": "node --test tests/registry/*.test.mjs",
     "test:validation": "node --test tests/validation/*.test.mjs",
     "test:bootstrap": "node --test tests/bootstrap/*.test.mjs",
-    "test:workflows": "node --test tests/workflows/*.test.mjs"
+    "test:workflows": "node --test tests/workflows/*.test.mjs",
+    "mcp": "node src/mcp-server.mjs",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "game-design",
@@ -18,8 +36,15 @@
     "workflow",
     "feature-management",
     "ai-agent",
-    "design-sync"
+    "design-sync",
+    "mcp",
+    "claude-code",
+    "codex"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cuvara/game-ai-workflows.git"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"

@@ -1,0 +1,13 @@
+Validate workflow registries and state.
+
+Execute: `node scripts/validate/validate.mjs`
+
+Also run: `node scripts/bootstrap/bootstrap.mjs`
+
+Report any issues found:
+- Duplicate IDs
+- Broken references
+- Missing specs
+- Invalid states
+- Invalid transitions
+- Broken GDD/system links

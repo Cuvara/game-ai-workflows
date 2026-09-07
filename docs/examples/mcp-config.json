@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "game-ai-workflows": {
+      "command": "npx",
+      "args": ["-y", "game-ai-workflows@latest", "mcp"]
+    }
+  }
+}
