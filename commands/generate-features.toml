@@ -1,0 +1,2 @@
+description = "Generate features.yaml from GDD documents, commit and push"
+prompt = "Read skills/generate-features/SKILL.md. Run: node scripts/registry/generate-features.mjs. Show created features. Validate: node scripts/validate/validate.mjs. Ask user to confirm. If confirmed: git add docs/registry/features.yaml docs/features/ then commit and push. If no GDD found suggest /design-sync."
