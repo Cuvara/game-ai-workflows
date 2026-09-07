@@ -1,3 +1,9 @@
+---
+name: plan-feature
+description: >
+  Generate implementation plan: architecture, affected systems, code changes, dependencies, tests, risks, acceptance criteria, implementation order.
+---
+
 # Plan Feature
 
 ## Purpose

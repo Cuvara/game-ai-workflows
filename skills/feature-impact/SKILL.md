@@ -1,3 +1,9 @@
+---
+name: feature-impact
+description: >
+  Trace all relationships: GDD → Feature → Spec → Systems → Code → Tests → Design Changes. Flag missing links.
+---
+
 # Feature Impact
 
 ## Purpose

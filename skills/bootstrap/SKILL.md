@@ -1,3 +1,9 @@
+---
+name: bootstrap
+description: >
+  Initialize and validate game AI workflow environment. Detects OS, runtimes, providers. Creates registries and state. Idempotent — safe to run repeatedly.
+---
+
 # Bootstrap
 
 ## Purpose

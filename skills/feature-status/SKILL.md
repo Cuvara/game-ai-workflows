@@ -1,3 +1,9 @@
+---
+name: feature-status
+description: >
+  Show comprehensive status: GDD sync, spec, design changes, implementation progress, tests, playtest, lifecycle state.
+---
+
 # Feature Status
 
 ## Purpose

@@ -1,3 +1,9 @@
+---
+name: find-feature
+description: >
+  Find feature by ID, name, alias, or fuzzy match. Handles typos via Levenshtein distance. Never guesses — shows candidates for ambiguous queries.
+---
+
 # Find Feature
 
 ## Purpose

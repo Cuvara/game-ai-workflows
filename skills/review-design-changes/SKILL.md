@@ -1,3 +1,9 @@
+---
+name: review-design-changes
+description: >
+  Show pending design changes with old/new behavior and affected features. Allows approve, reject, or defer for each change.
+---
+
 # Review Design Changes
 
 ## Purpose

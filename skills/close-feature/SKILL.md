@@ -1,3 +1,9 @@
+---
+name: close-feature
+description: >
+  Verify and close feature. Checks: design synced, spec exists, tests passing, playtest complete, acceptance criteria met. Only marks VERIFIED with evidence.
+---
+
 # Close Feature
 
 ## Purpose

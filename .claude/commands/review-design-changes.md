@@ -1,8 +1,0 @@
-Show and resolve pending design changes.
-
-Read `skills/review-design-changes/SKILL.md` for the full procedure.
-
-1. List pending changes: `node scripts/registry/design-change.mjs list PENDING`
-2. For each pending change, show old/new behavior and affected features
-3. Ask user to approve, reject, or defer each change
-4. Update status: `node scripts/registry/design-change.mjs approve|reject|defer <DC-NNN>`

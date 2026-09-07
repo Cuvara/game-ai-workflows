@@ -1,3 +1,9 @@
+---
+name: implement-feature
+description: >
+  Implement feature following its plan. Runs preflight, validates design currency, follows implementation order. Blocks on stale GDD.
+---
+
 # Implement Feature
 
 ## Purpose

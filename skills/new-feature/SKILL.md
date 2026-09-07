@@ -1,3 +1,9 @@
+---
+name: new-feature
+description: >
+  Create new feature with stable ID, registry entry, directory, and spec scaffold. Detects duplicates. Requires user confirmation.
+---
+
 # New Feature
 
 ## Purpose

@@ -1,3 +1,9 @@
+---
+name: playtest
+description: >
+  Create structured playtest checklist. Supports automation when available, falls back to manual. Never claims automated validation that didn't happen.
+---
+
 # Playtest
 
 ## Purpose

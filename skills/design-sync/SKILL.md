@@ -1,3 +1,9 @@
+---
+name: design-sync
+description: >
+  Synchronize GDD from provider, create snapshots, detect section-level changes, create design change records, map impact to features.
+---
+
 # Design Sync
 
 ## Purpose

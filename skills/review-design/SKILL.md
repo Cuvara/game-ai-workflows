@@ -1,3 +1,9 @@
+---
+name: review-design
+description: >
+  Review feature design for completeness, consistency, ambiguity, contradictions, missing rules, edge cases, and technical risks.
+---
+
 # Review Design
 
 ## Purpose

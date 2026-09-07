@@ -1,3 +1,9 @@
+---
+name: test-feature
+description: >
+  Discover, run, and analyze tests for a feature. Detect missing coverage. Generate QA report.
+---
+
 # Test Feature
 
 ## Purpose

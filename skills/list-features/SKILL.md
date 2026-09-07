@@ -1,3 +1,9 @@
+---
+name: list-features
+description: >
+  List all features from the registry with optional status filter. Shows ID, name, status, category.
+---
+
 # List Features
 
 ## Purpose
