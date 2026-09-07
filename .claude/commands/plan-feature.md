@@ -1,0 +1,3 @@
+Generate implementation plan for feature
+
+Read skills/plan-feature/SKILL.md. Resolve feature, verify spec exists. Run preflight: node scripts/preflight/preflight.mjs {{args}}. If fails stop. Discover systems: node scripts/discovery/gdd-discovery.mjs systems {{args}}. Write plan to docs/features/<id>/implementation-plan.md using contracts/IMPLEMENTATION_PLAN.md template.

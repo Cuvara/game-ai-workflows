@@ -1,0 +1,3 @@
+Verify and close a feature
+
+Read skills/close-feature/SKILL.md. Resolve feature {{args}}. Verify: design synced, spec exists, implementation complete, tests passing, playtest complete, acceptance criteria met. If ANY fails report missing — do NOT mark VERIFIED. If all pass update status to VERIFIED. Run: node scripts/validate/validate.mjs.

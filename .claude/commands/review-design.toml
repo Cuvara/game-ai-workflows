@@ -1,2 +1,0 @@
-description = "Review feature design for completeness"
-prompt = "Read skills/review-design/SKILL.md. Resolve feature: node adapters/generic/agent-workflow.mjs find-feature {{args}}. Read spec from docs/features/<id>/spec.md. Check: ambiguity, contradictions, missing rules, edge cases, acceptance criteria, system conflicts, technical risks. Report findings. Never silently rewrite design."

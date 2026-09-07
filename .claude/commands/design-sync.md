@@ -1,0 +1,3 @@
+Sync GDD and detect design changes
+
+Read skills/design-sync/SKILL.md for procedure. First run node scripts/bootstrap/bootstrap.mjs, then node scripts/sync/design-sync.mjs. If changes detected show impact. If provider unavailable report offline state. Never silently use stale data.
