@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "skills": {
+    "bootstrap": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/bootstrap/SKILL.md",
+      "computedHash": "fa897d9def209e5c36dba84b06ed77869c605bd9c0805574f64db338904121cd"
+    },
+    "close-feature": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/close-feature/SKILL.md",
+      "computedHash": "e90145220b05753a7558b1c442888da56bd88c9c7def605b5133d6e7a2f3bef5"
+    },
+    "design-sync": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/design-sync/SKILL.md",
+      "computedHash": "a9d2f997b309fb260eee9f1e2d7181eba0af802e15fa72d158ecab477b577480"
+    },
+    "feature-impact": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/feature-impact/SKILL.md",
+      "computedHash": "61804f5004d0810b2d1ba29edcc4b08485cd53afdd48d2b8e449c7798446f47f"
+    },
+    "feature-status": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/feature-status/SKILL.md",
+      "computedHash": "c4012aa0a2f7f194bcfd25a3a1e3f8e52f2804bd2d0e5e51c190d4fb7bbee3d4"
+    },
+    "find-feature": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/find-feature/SKILL.md",
+      "computedHash": "02a6fd3378a28e3fda835d9dcd2219ed54d05a08ebb82f8b4ef36e2fd802d3ea"
+    },
+    "implement-feature": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/implement-feature/SKILL.md",
+      "computedHash": "dd59f10de9bee987162abe0d761f1240316156463f2e1b439e0cee5ba76f8124"
+    },
+    "list-features": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/list-features/SKILL.md",
+      "computedHash": "6016af0c7ca7848fd36196eee106877b8cbb367f08edbbaef84db4c41ea0314e"
+    },
+    "new-feature": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/new-feature/SKILL.md",
+      "computedHash": "dfc348d93d9af28da11cb17dd1c0b069beab3237a7c52412a9edd6785ae831ef"
+    },
+    "plan-feature": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/plan-feature/SKILL.md",
+      "computedHash": "84860bc534b9a85e0bd399ef75a5d2282fd6cf7dd88bd1798c4fb57f0a641c65"
+    },
+    "playtest": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/playtest/SKILL.md",
+      "computedHash": "f8097580118d48b560d53c03d959281dc82533ae5bfdee40f77ad3ec09aac1e1"
+    },
+    "review-design": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/review-design/SKILL.md",
+      "computedHash": "9603672d2148efc6ddc6942d60ef12ee5036229d58e837fad70f897acebff3e8"
+    },
+    "review-design-changes": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/review-design-changes/SKILL.md",
+      "computedHash": "4d5f920ff9ed4e766e79d9f03cdd7576ecc60d62afbe95c5be8ca521bb697415"
+    },
+    "test-feature": {
+      "source": "Cuvara/game-ai-workflows",
+      "sourceType": "github",
+      "skillPath": "skills/test-feature/SKILL.md",
+      "computedHash": "290135fea413d88b6b6590a09a82e5cb895a27b6519350fe62e6bbe1f3be725c"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+name: Release & Publish Package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+
+  publish-github-packages:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: '@cuvara'
+
+      - name: Configure package for GitHub Packages
+        run: |
+          # Update package.json with scoped name for GitHub Packages
+          node -e "
+          const pkg = require('./package.json');
+          pkg.name = '@cuvara/game-ai-workflows';
+          pkg.publishConfig = { registry: 'https://npm.pkg.github.com' };
+          require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+          cat package.json | head -5
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  update-release:
+    needs: publish-github-packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add install instructions to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          BODY="${{ github.event.release.body }}"
+          INSTALL_NOTE="
+
+          ---
+
+          ## Install
+
+          ### As Claude Code Plugin
+          \`\`\`bash
+          git clone https://github.com/Cuvara/game-ai-workflows.git
+          cd game-ai-workflows
+          node bin/install.cjs
+          \`\`\`
+
+          ### As npm Package (GitHub Packages)
+          \`\`\`bash
+          npm install @cuvara/game-ai-workflows --registry=https://npm.pkg.github.com
+          \`\`\`
+
+          ### CLI
+          \`\`\`bash
+          npx github:Cuvara/game-ai-workflows list-features
+          \`\`\`
+          "
+          gh release edit "$TAG" --notes "${BODY}${INSTALL_NOTE}" || true

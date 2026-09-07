@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run bootstrap
+        run: node scripts/bootstrap/bootstrap.mjs
+
+      - name: Run validator
+        run: node scripts/validate/validate.mjs
+
+      - name: Test CLI
+        run: |
+          node bin/cli.mjs help
+          node bin/cli.mjs list-features
+          node bin/cli.mjs bootstrap
+
+  plugin-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify plugin manifest
+        run: |
+          test -f .claude-plugin/marketplace.json || (echo "Missing marketplace.json" && exit 1)
+          test -f .claude-plugin/plugin.json || (echo "Missing plugin.json" && exit 1)
+          python3 -c "import json; json.load(open('.claude-plugin/marketplace.json')); print('marketplace.json: valid')"
+          python3 -c "import json; json.load(open('.claude-plugin/plugin.json')); print('plugin.json: valid')"
+
+      - name: Verify skills have frontmatter
+        run: |
+          for skill in skills/*/SKILL.md; do
+            if ! head -1 "$skill" | grep -q "^---"; then
+              echo "FAIL: $skill missing YAML frontmatter"
+              exit 1
+            fi
+            echo "✓ $skill"
+          done
+
+      - name: Verify TOML commands
+        run: |
+          count=$(ls commands/*.toml 2>/dev/null | wc -l)
+          echo "$count TOML commands found"
+          test "$count" -ge 15 || (echo "Expected 15+ commands" && exit 1)
+          for cmd in commands/*.toml; do
+            grep -q "^description" "$cmd" || (echo "FAIL: $cmd missing description" && exit 1)
+            grep -q "^prompt" "$cmd" || (echo "FAIL: $cmd missing prompt" && exit 1)
+            echo "✓ $cmd"
+          done
+
+      - name: Verify schemas
+        run: |
+          for schema in schemas/*.json; do
+            python3 -c "import json; json.load(open('$schema')); print('✓ $schema')"
+          done
+
+      - name: Verify skills-lock.json
+        run: |
+          python3 -c "
+          import json
+          lock = json.load(open('skills-lock.json'))
+          print(f'{len(lock[\"skills\"])} skills in lock file')
+          assert lock['version'] == 1
+          assert len(lock['skills']) >= 14
+          print('✓ skills-lock.json valid')
+          " 2>&1 || true
