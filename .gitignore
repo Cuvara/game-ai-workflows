@@ -1,0 +1,28 @@
+# AI Workflow - local state (not shared)
+.ai/cache/
+.ai/gdd-state.json
+.ai/setup-state.json
+
+# Test workspaces
+tests/.test-workspace*/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets (never commit)
+*.secret
+*.key
+.env
+.env.local
+credentials.json
+token.json

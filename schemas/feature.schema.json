@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "feature.schema.json",
+  "title": "Feature Definition",
+  "description": "Schema for defining a trackable game feature from design through implementation.",
+  "type": "object",
+  "required": ["id", "name", "category", "status", "gdd", "spec", "systems", "code", "tests", "dependencies", "design_changes", "created_at", "updated_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+\\.[a-z][a-z0-9_-]*$",
+      "description": "Unique feature identifier in category.name format, e.g. gameplay.inventory"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "enum": ["gameplay", "system", "ui", "infrastructure", "meta"]
+    },
+    "status": {
+      "$ref": "#/definitions/featureStatus"
+    },
+    "gdd": {
+      "type": "object",
+      "required": ["document", "section"],
+      "properties": {
+        "document": { "type": "string" },
+        "section": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "spec": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "systems": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "code": {
+      "type": "object",
+      "required": ["paths"],
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tests": {
+      "type": "object",
+      "required": ["paths"],
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Feature IDs this feature depends on"
+    },
+    "design_changes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Design change IDs (DC-NNN) applied to this feature"
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Alternative names or shorthand for this feature"
+    },
+    "description": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "featureStatus": {
+      "type": "string",
+      "enum": [
+        "PLANNED",
+        "DESIGN_REVIEW",
+        "READY",
+        "IN_PROGRESS",
+        "IMPLEMENTED",
+        "TESTING",
+        "PLAYTEST",
+        "VERIFIED",
+        "BLOCKED",
+        "NEEDS_REVIEW",
+        "DESIGN_CHANGED",
+        "DEPRECATED",
+        "CANCELLED"
+      ]
+    }
+  }
+}

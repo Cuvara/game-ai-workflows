@@ -1,0 +1,65 @@
+# Example Feature Registry
+# Copy to docs/registry/features.yaml and modify for your project
+
+features:
+
+  - id: gameplay.defender-mode
+    name: Defender Mode
+    category: gameplay
+    status: VERIFIED
+    gdd:
+      document: game-gdd
+      section: gameplay.defender-mode
+    spec:
+      path: docs/features/gameplay.defender-mode/spec.md
+    systems:
+      - system.wave-spawner
+      - system.target-detection
+      - system.defender-mode
+    code:
+      paths:
+        - Assets/Scripts/Gameplay/DefenderMode/
+    tests:
+      paths:
+        - Assets/Tests/DefenderMode/
+    dependencies: []
+    design_changes: []
+
+  - id: gameplay.inventory
+    name: Inventory System
+    category: gameplay
+    status: PLANNED
+    gdd:
+      document: game-gdd
+      section: gameplay.inventory
+    spec:
+      path: docs/features/gameplay.inventory/spec.md
+    systems:
+      - system.item
+      - system.save-load
+    code:
+      paths: []
+    tests:
+      paths: []
+    dependencies: []
+    design_changes: []
+
+  - id: gameplay.equipment
+    name: Equipment System
+    category: gameplay
+    status: PLANNED
+    gdd:
+      document: game-gdd
+      section: gameplay.equipment
+    spec:
+      path: docs/features/gameplay.equipment/spec.md
+    systems:
+      - system.item
+      - system.inventory
+    code:
+      paths: []
+    tests:
+      paths: []
+    dependencies:
+      - gameplay.inventory
+    design_changes: []

@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "gdd.schema.json",
+  "title": "GDD Document Registry",
+  "description": "Schema for the game design document registry, tracking all GDD sources and their sections.",
+  "type": "object",
+  "required": ["documents"],
+  "properties": {
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/gddDocument" }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "gddDocument": {
+      "type": "object",
+      "required": ["id", "name", "provider", "sections"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string",
+          "enum": ["google-drive", "local", "generic"]
+        },
+        "provider_file_id": {
+          "type": "string",
+          "description": "Provider-specific file identifier (e.g. Google Drive file ID)"
+        },
+        "sections": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/gddSection" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "gddSection": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parent": {
+          "type": "string",
+          "description": "Parent section ID for nested sections"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

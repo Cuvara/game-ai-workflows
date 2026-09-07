@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "design-change.schema.json",
+  "title": "Design Change",
+  "description": "Schema for tracking a design change between GDD revisions and its impact on features, systems, code, and tests.",
+  "type": "object",
+  "required": [
+    "id", "source_document", "previous_revision", "current_revision",
+    "changed_section", "old_behavior", "new_behavior", "impact",
+    "affected_features", "affected_systems", "affected_code", "affected_tests",
+    "status", "created_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^DC-\\d{3,}$",
+      "description": "Design change identifier in DC-NNN format"
+    },
+    "source_document": {
+      "type": "string",
+      "description": "GDD document ID where the change originated"
+    },
+    "previous_revision": {
+      "type": "string"
+    },
+    "current_revision": {
+      "type": "string"
+    },
+    "changed_section": {
+      "type": "string",
+      "description": "GDD section ID that was changed"
+    },
+    "old_behavior": {
+      "type": "string"
+    },
+    "new_behavior": {
+      "type": "string"
+    },
+    "impact": {
+      "type": "string",
+      "description": "Summary of the impact this change has on the project"
+    },
+    "affected_features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Feature IDs affected by this change"
+    },
+    "affected_systems": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "affected_code": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "File paths affected by this change"
+    },
+    "affected_tests": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Test file paths affected by this change"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "APPROVED", "REJECTED", "DEFERRED", "IMPLEMENTED"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the design change was resolved"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+# Example GDD Registry
+
+documents:
+
+  - id: game-gdd
+    name: Game GDD
+    provider: google-drive
+    drive_file_id: "REPLACE_WITH_ACTUAL_ID"
+    sections:
+      - id: core-loop
+        name: Core Loop
+      - id: gameplay.defender-mode
+        name: Defender Mode
+      - id: gameplay.inventory
+        name: Inventory
+      - id: gameplay.equipment
+        name: Equipment
+      - id: ui.hud
+        name: HUD

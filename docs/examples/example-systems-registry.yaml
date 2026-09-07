@@ -1,0 +1,40 @@
+# Example System Registry
+
+systems:
+
+  - id: system.wave-spawner
+    name: Wave Spawner
+    features:
+      - gameplay.defender-mode
+    code:
+      - Assets/Scripts/Systems/WaveSpawner/
+    tests:
+      - Assets/Tests/WaveSpawner/
+
+  - id: system.target-detection
+    name: Target Detection
+    features:
+      - gameplay.defender-mode
+    code:
+      - Assets/Scripts/Systems/TargetDetection/
+    tests:
+      - Assets/Tests/TargetDetection/
+
+  - id: system.item
+    name: Item System
+    features:
+      - gameplay.inventory
+      - gameplay.equipment
+    code:
+      - Assets/Scripts/Systems/Item/
+    tests:
+      - Assets/Tests/Item/
+
+  - id: system.save-load
+    name: Save/Load System
+    features:
+      - gameplay.inventory
+    code:
+      - Assets/Scripts/Systems/SaveLoad/
+    tests:
+      - Assets/Tests/SaveLoad/

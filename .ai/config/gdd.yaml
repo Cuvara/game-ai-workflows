@@ -1,0 +1,13 @@
+# GDD Provider Configuration
+# This file stores non-secret GDD configuration.
+# Secrets (OAuth tokens, etc.) are handled by the provider, not stored here.
+
+provider: local  # Options: google-drive, local, generic
+
+document:
+  id: ""
+  name: ""
+  # drive_file_id: ""  # Uncomment for Google Drive
+
+sync:
+  enabled: true
